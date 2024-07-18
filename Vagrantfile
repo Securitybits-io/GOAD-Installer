@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "GOAD-Installer"
 
   config.vm.provider "virtualbox" do |v|
-    v.memory = 2000
+    v.memory = 1000
     v.cpus = 1
     v.name = "GOAD-Installer"
     v.customize ["modifyvm", :id, "--groups", "/GOAD Management"]
