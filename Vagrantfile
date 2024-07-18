@@ -16,16 +16,18 @@ Vagrant.configure("2") do |config|
   config.vm.network :private_network, type: "dhcp"
 
   $script = <<-SCRIPT
+  sudo apt update
   sudo apt install -y git sshpass lftp rsync openssh-client
-  git clone git@github.com:Orange-Cyberdefense/GOAD.git
+  git clone https://github.com/Orange-Cyberdefense/GOAD
   sudo apt install python3-pip
+  
   python3 -m pip install --upgrade pip
   python3 -m pip install --upgrade ansible-core==2.12.6
   python3 -m pip install --upgrade pywinrm
+
+  cd GOAD/ansible
+  ansible-galaxy install -r requirements.yml
   SCRIPT
   
-  Vagrant.configure("2") do |config|
-    config.vm.provision "shell", inline: $script
-  end
-
+  config.vm.provision "shell", inline: $script
 end
