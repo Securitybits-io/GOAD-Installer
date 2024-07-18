@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
     v.customize ["modifyvm", :id, "--groups", "/GOAD Management"]
   end
 
-  config.vm.network :private_network, type: "dhcp"
+  config.vm.network :private_network, ip: "192.168.56.10"
 
   $dependencies = <<-DEPS
   sudo apt update
